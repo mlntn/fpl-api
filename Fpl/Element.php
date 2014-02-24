@@ -19,4 +19,17 @@ class Element {
     return $crawler;
   }
 
+  /**
+   *
+   * @param string $url
+   * @return stdClass|array
+   */
+  protected function getJson($url) {
+    $json = file_get_contents($url);
+
+    $content = json_decode($json);
+
+    return $content;
+  }
+
 }

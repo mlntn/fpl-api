@@ -11,7 +11,10 @@ class Api {
   }
 
   public function getPlayer($player_id) {
+    $player = new Element\Player();
+    $player->load($player_id);
 
+    return $player;
   }
 
   public function getRound($round) {
