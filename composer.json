@@ -1,0 +1,29 @@
+{
+    "name": "mlntn/fpl-api",
+    "type": "library",
+    "description": "Fantasy Premier League API",
+    "keywords": [],
+    "homepage": "http://symfony.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jared Mellentine",
+            "email": "jared@mellentine.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/dom-crawler": "2.*",
+        "symfony/css-selector": "2.*"
+    },
+    "autoload": {
+        "psr-0": { "Mlntn\\": "" }
+    },
+    "target-dir": "Mlntn",
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
