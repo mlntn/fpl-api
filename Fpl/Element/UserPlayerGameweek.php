@@ -2,7 +2,7 @@
 
 namespace Fpl\Element;
 
-class UserPlayer extends Player {
+class UserPlayerGameweek extends PlayerGameweek {
 
   /**
    * @var boolean

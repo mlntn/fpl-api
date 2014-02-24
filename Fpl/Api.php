@@ -17,8 +17,15 @@ class Api {
     return $player;
   }
 
-  public function getRound($round) {
+  public function getUserGameweek($user_id, $gameweek) {
+    $user_gameweek = new Element\UserGameweek();
+    $user_gameweek->load($user_id, $gameweek);
 
+    return $user_gameweek;
+  }
+
+  public function getDreamteamGameweek($gameweek) {
+    
   }
 
   public function getUser($user_id) {
