@@ -47,12 +47,13 @@ class User extends Element {
 
     $crawler = $this->getDom("http://fantasy.premierleague.com/entry/{$user_id}/history/");
 
-    $team = $crawler->filter('.ismRHSBadge');
-    if (count($team)) {
-      preg_match('~badge_(\d+)\.png$~', $team->attr('src'), $team_id);
+    $favorite_team = $crawler->filter('.ismRHSBadge');
+    if (count($favorite_team)) {
+      preg_match('~badge_(\d+)\.png$~', $favorite_team->attr('src'), $team_id);
       if (count($team_id) > 1) {
-        //$this->favorite_team = Team::getFromId($team_id[1]);
-        $this->favorite_team = $team_id[1];
+        $team = new Team();
+        $team->load($content->$team_id[1]);
+        $this->favorite_team = $team;
       }
     }
 

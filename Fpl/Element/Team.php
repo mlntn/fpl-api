@@ -31,4 +31,8 @@ class Team extends Element {
    */
   public $rounds;
 
+  public function load($team_id) {
+    $this->team_id = $team_id;
+  }
+
 }
