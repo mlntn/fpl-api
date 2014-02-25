@@ -3,8 +3,13 @@
 namespace Fpl;
 
 use Fpl\Element;
+use Cache\Provider as CacheProvider;
 
 class Api {
+
+  public function __construct(CacheProvider $cache) {
+    Element::$cache = $cache;
+  }
 
   public function getUserRound($user_id, $round) {
 
