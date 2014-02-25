@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Fantasy Premier League API",
     "keywords": [],
-    "homepage": "http://symfony.com",
+    "homepage": "http://github.com/mlntn/fpl-api",
     "license": "MIT",
     "authors": [
         {
@@ -12,14 +12,17 @@
         }
     ],
     "require": {
+        "mlntn/omni-cache": "*",
         "php": ">=5.3.3",
         "symfony/dom-crawler": "2.*",
         "symfony/css-selector": "2.*"
     },
-    "autoload": {
-        "psr-0": { "Mlntn\\": "" }
-    },
-    "target-dir": "Mlntn",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/mlntn/omni-cache"
+        }
+    ],
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
