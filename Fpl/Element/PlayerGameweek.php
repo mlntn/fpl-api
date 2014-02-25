@@ -2,7 +2,7 @@
 
 namespace Fpl\Element;
 
-class PlayerGameweek extends Player {
+class PlayerGameweek extends PlayerSimple {
 
   /**
    * @var Match
@@ -98,4 +98,29 @@ class PlayerGameweek extends Player {
    * @var integer
    */
 
+  public function load($player_id, $gameweek) {
+    parent::load($player_id);
+
+    $content = $this->getJson("http://fantasy.premierleague.com/web/api/elements/{$player_id}/");
+
+    $gw = $content->fixture_history->all[$gameweek - 1];
+
+    $this->minutes_played      = $gw[3];
+    $this->goals_scored        = $gw[4];
+    $this->assists             = $gw[5];
+    $this->clean_sheet         = $gw[6];
+    $this->goals_conceded      = $gw[7];
+    $this->own_goals           = $gw[8];
+    $this->penalties_saved     = $gw[9];
+    $this->penalities_missed   = $gw[10];
+    $this->yellow_cards        = $gw[11];
+    $this->red_cards           = $gw[12];
+    $this->saves               = $gw[13];
+    $this->bonus               = $gw[14];
+    $this->ea_sports_ppi       = $gw[15];
+    $this->bonus_points_system = $gw[16];
+    $this->net_transfers       = $gw[17];
+    $this->value               = $gw[18] / 10;
+    $this->points              = $gw[19];
+  }
 }

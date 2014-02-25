@@ -25,7 +25,10 @@ class Api {
   }
 
   public function getDreamteamGameweek($gameweek) {
-    
+    $dreamteam_gameweek = new Element\DreamteamGameweek();
+    $dreamteam_gameweek->load($gameweek);
+
+    return $dreamteam_gameweek;
   }
 
   public function getUser($user_id) {
