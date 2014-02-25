@@ -9,7 +9,7 @@ class Element {
   /**
    * @var \Cache\Provider
    */
-  protected static $cache;
+  public static $cache;
 
   /**
    *
