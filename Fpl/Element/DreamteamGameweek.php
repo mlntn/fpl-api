@@ -42,17 +42,14 @@ class DreamteamGameweek extends Element {
       $player->load($player_id, $gameweek);
       $this->players[] = $player;
     }
-    die(var_dump($this->players));
 
-    preg_match('~(\d+)\s+(\(\-(\d+)pts\))?~', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div/div[2]/dl/dd[2]')->text(), $transfers);
-    $this->transfers_made = (int) $transfers[1];
-    $this->transfers_cost = (int) @$transfers[3] ?: 0;
-    $this->gameweek_rank = (int) preg_replace('~\D~', '', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div/div[2]/dl/dd[1]')->text());
-    $this->gameweek_points = (int) preg_replace('~\D~', '', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div/div[1]/div/div')->text());
-    $this->average_points = (int) preg_replace('~\D~', '', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div/div[2]/div/div[2]')->text());
-    $this->highest_points = (int) preg_replace('~\D~', '', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div/div[2]/a')->text());
-    $this->highest_player_id = (int) preg_replace('~/entry/(\d+)/~', '$1', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div/div[2]/a')->attr('href'));
-    
+    $top_player_id = substr($crawler->filterXPath('//*[@id="ism"]/section[1]/div[1]/div[1]/div[2]/div[2]/div/div[2]/h4/a')->attr('href'), 1);
+    $this->top_player = new PlayerGameweek();
+    $this->top_player->load($top_player_id, $gameweek);
+
+    $total_score = $crawler->filterXPath('//*[@id="ism"]/section[1]/div[1]/div[1]/div[2]/div[1]/div/div');
+    $this->total_score = (int) preg_replace('~\D~', '', $total_score->text());
+
   }
 
 }

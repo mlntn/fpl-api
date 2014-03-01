@@ -101,9 +101,10 @@ class PlayerGameweek extends PlayerSimple {
   public function load($player_id, $gameweek) {
     parent::load($player_id);
 
-    $content = $this->getJson("http://fantasy.premierleague.com/web/api/elements/{$player_id}/");
+    $contents = $this->getJson("http://fantasy.premierleague.com/web/api/elements/{$player_id}/");
 
-    $gw = $content->fixture_history->all[$gameweek - 1];
+    $matches = $this->filterMatches($contents->fixture_history->all, $gameweek);
+    $gw = $this->sumMatches($matches);
 
     $this->minutes_played      = $gw[3];
     $this->goals_scored        = $gw[4];
@@ -123,4 +124,29 @@ class PlayerGameweek extends PlayerSimple {
     $this->value               = $gw[18] / 10;
     $this->points              = $gw[19];
   }
+
+  protected function sumMatches($matches) {
+    $totals = array_fill(3, 17, 0);
+
+    for ($i = 3; $i <= 19; $i++) {
+      foreach ($matches as $m) {
+        $totals[$i] = $i === 18 ? $m[$i] : $totals[$i] + $m[$i];
+      }
+    }
+
+    return $totals;
+  }
+
+  protected function filterMatches($matches, $gameweek) {
+    $return = array();
+
+    foreach ($matches as $m) {
+      if ($m[1] === $gameweek) {
+        $return[] = $m;
+      }
+    }
+
+    return $return;
+  }
+
 }

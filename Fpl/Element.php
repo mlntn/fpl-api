@@ -52,7 +52,7 @@ class Element {
   }
 
   protected function buildCacheKey($url) {
-    return strtr(str_replace('http://fantasy.premierleague.com/', '', $url), '/', '_');
+    return strtr(str_replace('http://fantasy.premierleague.com/', '', trim($url, '/')), '/', '_');
   }
 
 }
