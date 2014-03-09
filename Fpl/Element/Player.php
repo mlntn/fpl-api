@@ -74,6 +74,8 @@ class Player extends PlayerSimple {
   public function load($player_id) {
     parent::load($player_id);
 
+    $content = $this->getJson("http://fantasy.premierleague.com/web/api/elements/{$player_id}/");
+
     $this->is_dreamteam     = $content->in_dreamteam;
     $this->maximum_cost     = $content->max_cost / 10;
     $this->minimum_cost     = $content->min_cost / 10;

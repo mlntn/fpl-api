@@ -1,32 +1,33 @@
 {
-    "name": "mlntn/fpl-api",
-    "type": "library",
-    "description": "Fantasy Premier League API",
-    "keywords": [],
-    "homepage": "http://github.com/mlntn/fpl-api",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jared Mellentine",
-            "email": "jared@mellentine.com"
-        }
-    ],
-    "require": {
-        "mlntn/omni-cache": "*",
-        "php": ">=5.3.3",
-        "symfony/dom-crawler": "2.*",
-        "symfony/css-selector": "2.*"
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/mlntn/omni-cache"
-        }
-    ],
-    "minimum-stability": "dev",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
+  "name": "mlntn/fpl-api",
+  "type": "library",
+  "description": "Fantasy Premier League API",
+  "keywords": [],
+  "homepage": "http://github.com/mlntn/fpl-api",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jared Mellentine",
+      "email": "jared@mellentine.com"
     }
+  ],
+  "require": {
+    "fabpot/goutte": "*",
+    "mlntn/omni-cache": "*",
+    "php": ">=5.3.3",
+    "symfony/dom-crawler": "2.*",
+    "symfony/css-selector": "2.*"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/mlntn/omni-cache"
+    }
+  ],
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
 }

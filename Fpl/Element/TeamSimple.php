@@ -4,7 +4,7 @@ namespace Fpl\Element;
 
 use Fpl\Element;
 
-class Team extends TeamSimple {
+class TeamSimple extends Element {
 
   /**
    * @var integer
@@ -26,15 +26,13 @@ class Team extends TeamSimple {
    */
   public $icon;
 
-  /**
-   * @var Round[]
-   */
-  public $rounds;
-
   public function load($team_id) {
-    parent::load($team_id);
+    $team = $this->getTeam($team_id);
 
-    // todo: load rounds
+    $this->id = $team_id;
+    $this->name = $team->name;
+    $this->abbr = $team->short_name;
+    $this->icon = "http://cdn.ismfg.net/static/plfpl/img/badges/badge_{$team_id}.png";
   }
 
 }
