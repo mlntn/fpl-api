@@ -9,7 +9,7 @@ class PlayerSimple extends Element {
   /**
    * @var integer
    */
-  public $player_id;
+  public $id;
 
   /**
    * @var string
@@ -32,17 +32,17 @@ class PlayerSimple extends Element {
   public $team;
 
   public function load($player_id) {
-    $this->player_id = $player_id;
+    $this->id = $player_id;
 
     $content = $this->getJson("http://fantasy.premierleague.com/web/api/elements/{$player_id}/");
 
-    $this->first_name       = $content->first_name;
-    $this->last_name        = $content->second_name;
-    $this->display_name     = $content->web_name;
+    $this->first_name   = $content->first_name;
+    $this->last_name    = $content->second_name;
+    $this->display_name = $content->web_name;
 
-    $team = new Team();
+    $team = new TeamSimple();
     $team->load($content->team_id);
-    $this->team             = $team;
+    $this->team = $team;
   }
 
 }
