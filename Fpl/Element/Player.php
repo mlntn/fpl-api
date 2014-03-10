@@ -6,6 +6,22 @@ use Fpl\Element;
 
 class Player extends PlayerSimple {
 
+  const STAT_MINUTES_PLAYED      =  3;
+  const STAT_GOALS_SCORED        =  4;
+  const STAT_ASSISTS             =  5;
+  const STAT_CLEAN_SHEETS        =  6;
+  const STAT_GOALS_CONCEDED      =  7;
+  const STAT_OWN_GOALS           =  8;
+  const STAT_PENALTIES_SAVED     =  9;
+  const STAT_PENALTIES_MISSED    = 10;
+  const STAT_YELLOW_CARDS        = 11;
+  const STAT_RED_CARDS           = 12;
+  const STAT_SAVES               = 13;
+  const STAT_BONUS_POINTS        = 14;
+  const STAT_EA_SPORTS_PPI       = 15;
+  const STAT_BONUS_POINTS_SYSTEM = 16;
+  const STAT_POINTS              = 19;
+
   /**
    * @var boolean
    */
@@ -71,6 +87,76 @@ class Player extends PlayerSimple {
    */
   public $transfers_out;
 
+  /**
+   * @var integer
+   */
+  public $minutes_played;
+
+  /**
+   * @var integer
+   */
+  public $goals_scored;
+
+  /**
+   * @var integer
+   */
+  public $assists;
+
+  /**
+   * @var integer
+   */
+  public $clean_sheets;
+
+  /**
+   * @var integer
+   */
+  public $goals_conceded;
+
+  /**
+   * @var integer
+   */
+  public $own_goals;
+
+  /**
+   * @var integer
+   */
+  public $penalties_saved;
+
+  /**
+   * @var integer
+   */
+  public $penalties_missed;
+
+  /**
+   * @var integer
+   */
+  public $yellow_cards;
+
+  /**
+   * @var integer
+   */
+  public $red_cards;
+
+  /**
+   * @var integer
+   */
+  public $saves;
+
+  /**
+   * @var integer
+   */
+  public $bonus_points;
+
+  /**
+   * @var integer
+   */
+  public $ea_sports_ppi;
+
+  /**
+   * @var integer
+   */
+  public $bonus_points_system;
+
   public function load($player_id) {
     parent::load($player_id);
 
@@ -89,6 +175,31 @@ class Player extends PlayerSimple {
     $this->form             = $content->form;
     $this->transfers_in     = $content->transfers_in;
     $this->transfers_out    = $content->transfers_out;
+
+    $this->minutes_played      = $this->sumStat($content->fixture_history->all, self::STAT_MINUTES_PLAYED);
+    $this->goals_scored        = $this->sumStat($content->fixture_history->all, self::STAT_GOALS_SCORED);
+    $this->assists             = $this->sumStat($content->fixture_history->all, self::STAT_ASSISTS);
+    $this->clean_sheets        = $this->sumStat($content->fixture_history->all, self::STAT_CLEAN_SHEETS);
+    $this->goals_conceded      = $this->sumStat($content->fixture_history->all, self::STAT_GOALS_CONCEDED);
+    $this->own_goals           = $this->sumStat($content->fixture_history->all, self::STAT_OWN_GOALS);
+    $this->penalties_saved     = $this->sumStat($content->fixture_history->all, self::STAT_PENALTIES_SAVED);
+    $this->penalties_missed    = $this->sumStat($content->fixture_history->all, self::STAT_PENALTIES_MISSED);
+    $this->yellow_cards        = $this->sumStat($content->fixture_history->all, self::STAT_YELLOW_CARDS);
+    $this->red_cards           = $this->sumStat($content->fixture_history->all, self::STAT_RED_CARDS);
+    $this->saves               = $this->sumStat($content->fixture_history->all, self::STAT_SAVES);
+    $this->bonus_points        = $this->sumStat($content->fixture_history->all, self::STAT_BONUS_POINTS);
+    $this->ea_sports_ppi       = $this->sumStat($content->fixture_history->all, self::STAT_EA_SPORTS_PPI);
+    $this->bonus_points_system = $this->sumStat($content->fixture_history->all, self::STAT_BONUS_POINTS_SYSTEM);
+  }
+
+  protected function sumStat($rounds, $item) {
+    $total = 0;
+
+    foreach ($rounds as $r) {
+      $total += $r[$item];
+    }
+
+    return $total;
   }
 
 }
