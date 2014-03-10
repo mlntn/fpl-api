@@ -54,7 +54,7 @@ class UserGameweek extends Element {
   /**
    * @var UserPlayerGameweek[]
    */
-  public $players;
+  public $players = array();
 
   public function load($user_id, $gameweek) {
     $this->user_id = $user_id;
@@ -70,7 +70,20 @@ class UserGameweek extends Element {
     $this->average_points = (int) preg_replace('~\D~', '', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div/div[2]/div/div[2]')->text());
     $this->highest_points = (int) preg_replace('~\D~', '', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div/div[2]/a')->text());
     $this->highest_player_id = (int) preg_replace('~/entry/(\d+)/~', '$1', $crawler->filterXPath('//*[@id="ism"]/section[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div/div[2]/a')->attr('href'));
-    
+
+    $player_list = $crawler->filterXPath('//*[starts-with(@class, "ismPitchElement")]');
+
+    foreach ($player_list as $p) {
+      $info = json_decode(trim(str_replace('ismPitchElement', '', $p->getAttribute('class'))));
+      $player = new UserPlayerGameweek();
+      $player->load($info->id, $gameweek);
+      $player->is_captain = $info->is_captain;
+      $player->is_vice_captain = $info->is_vice_captain;
+      $player->is_starter = $info->sub === 0;
+      $player->substitute_order = $info->sub;
+      $player->points = $player->points * $info->m; // multiplier for captaincy
+      $this->players[] = $player;
+    }
   }
 
 }
