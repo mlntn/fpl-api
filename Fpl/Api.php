@@ -11,10 +11,6 @@ class Api {
     Element::$cache = $cache;
   }
 
-  public function getUserRound($user_id, $round) {
-
-  }
-
   public function getPlayer($player_id) {
     $player = new Element\Player();
     $player->load($player_id);
