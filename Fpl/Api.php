@@ -18,6 +18,13 @@ class Api {
     return $player;
   }
 
+  public function getPlayerGameweek($player_id, $gameweek) {
+    $player_gameweek = new Element\PlayerGameweek();
+    $player_gameweek->load($player_id, $gameweek);
+
+    return $player_gameweek;
+  }
+
   public function getUserGameweek($user_id, $gameweek) {
     $user_gameweek = new Element\UserGameweek();
     $user_gameweek->load($user_id, $gameweek);
