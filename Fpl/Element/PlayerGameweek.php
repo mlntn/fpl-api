@@ -67,7 +67,7 @@ class PlayerGameweek extends PlayerSimple {
   /**
    * @var integer
    */
-  public $bonus;
+  public $bonus_points;
 
   /**
    * @var integer
@@ -117,7 +117,7 @@ class PlayerGameweek extends PlayerSimple {
     $this->yellow_cards        = $gw[11];
     $this->red_cards           = $gw[12];
     $this->saves               = $gw[13];
-    $this->bonus               = $gw[14];
+    $this->bonus_points        = $gw[14];
     $this->ea_sports_ppi       = $gw[15];
     $this->bonus_points_system = $gw[16];
     $this->net_transfers       = $gw[17];
