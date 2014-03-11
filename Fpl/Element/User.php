@@ -5,22 +5,7 @@ namespace Fpl\Element;
 use Fpl\Element;
 use Symfony\Component\DomCrawler\Crawler;
 
-class User extends Element {
-
-  /**
-   * @var integer
-   */
-  public $user_id;
-
-  /**
-   * @var string
-   */
-  public $user_name;
-
-  /**
-   * @var string
-   */
-  public $team_name;
+class User extends UserSimple {
 
   /**
    * @var Country
@@ -43,7 +28,7 @@ class User extends Element {
   public $transfers = array();
 
   public function load($user_id) {
-    $this->user_id = $user_id;
+    parent::load($user_id);
 
     $crawler = $this->getDom("http://fantasy.premierleague.com/entry/{$user_id}/history/");
 
@@ -64,8 +49,6 @@ class User extends Element {
         $this->country = $country_code[1];
       }
     }
-    $this->user_name = $crawler->filter('.ismSection2')->text();
-    $this->team_name = $crawler->filter('.ismSection3')->text();
 
     $this->populateGameweeks($crawler);
 
