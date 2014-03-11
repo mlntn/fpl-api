@@ -39,6 +39,13 @@ class Api {
     return $dreamteam_gameweek;
   }
 
+  public function getLeague($league_id, $page = 1) {
+    $league = new Element\League();
+    $league->load($league_id, $page);
+
+    return $league;
+  }
+
   public function getUser($user_id) {
     $user = new Element\User();
     $user->load($user_id);
