@@ -53,4 +53,11 @@ class Api {
     return $user;
   }
 
+  public function getGameweek($gameweek) {
+    $gw = new Element\Gameweek();
+    $gw->load($gameweek);
+
+    return $gw;
+  }
+
 }

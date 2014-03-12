@@ -2,20 +2,22 @@
 
 namespace Fpl\Element;
 
-class Match {
+use Fpl\Element;
+
+class GameweekMatch extends Element {
 
   /**
-   * @var DateTime
+   * @var \DateTime
    */
   public $start_time;
 
   /**
-   * @var Team
+   * @var TeamSimple
    */
   public $home_team;
 
   /**
-   * @var Team
+   * @var TeamSimple
    */
   public $away_team;
 
