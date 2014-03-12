@@ -3,7 +3,6 @@
 namespace Fpl\Element;
 
 use Fpl\Element;
-use Symfony\Component\DomCrawler\Crawler;
 
 class UserSimple extends Element {
 
