@@ -8,14 +8,14 @@ use Symfony\Component\DomCrawler\Crawler;
 class Gameweek extends Element {
 
   /**
-   * @var \DateTime
-   */
-  public $deadline_time;
-
-  /**
    * @var integer
    */
   public $gameweek;
+
+  /**
+   * @var \DateTime
+   */
+  public $deadline_time;
 
   /**
    * @var GameweekMatch[]
