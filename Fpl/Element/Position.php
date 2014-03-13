@@ -42,4 +42,5 @@ class Position extends Element {
     $this->abbr = $position->singular_name_short;
     $this->shirt_specific = $position->shirt_specific;
   }
+
 }
