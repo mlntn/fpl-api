@@ -36,10 +36,10 @@ class Position extends Element {
   }
 
   public function populate($position) {
-    $this->id = $position->id;
-    $this->singular_name = $position->singular_name;
-    $this->plural_name = $position->plural_name;
-    $this->abbr = $position->singular_name_short;
+    $this->id             = $position->id;
+    $this->singular_name  = $position->singular_name;
+    $this->plural_name    = $position->plural_name;
+    $this->abbr           = $position->singular_name_short;
     $this->shirt_specific = $position->shirt_specific;
   }
 
