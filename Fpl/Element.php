@@ -80,7 +80,7 @@ class Element {
     $return = array();
 
     foreach ($teams as $t) {
-      $team = new Element\Team();
+      $team = new Element\TeamSimple();
       $team->populate($t);
       $return[] = $team;
     }
