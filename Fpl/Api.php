@@ -23,6 +23,15 @@ class Api {
   }
 
   /**
+   * @return Element\PlayerSimple[]
+   */
+  public function getPlayers() {
+    $element = new Element();
+    
+    return $element->getPlayers();
+  }
+
+  /**
    * @param int $player_id
    * @param int $gameweek
    * @return \Fpl\Element\PlayerGameweek

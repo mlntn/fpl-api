@@ -124,6 +124,34 @@ class Element {
     return $return;
   }
 
+  protected function getPlayersRaw() {
+    if (self::$cache->has('players')) {
+      $players = self::$cache->get('players');
+    }
+    else {
+      $json = $this->getTransferJson();
+      $players = $json->elInfo;
+      self::$cache->set('players', $players);
+    }
+
+    return $players;
+  }
+
+  public function getPlayers() {
+    $players = $this->getPlayersRaw();
+
+    $return = array();
+
+    foreach ($players as $p) {
+      if (is_null($p)) continue;
+      $player = new Element\Player();
+      $player->populate($p);
+      $return[] = $player;
+    }
+
+    return $return;
+  }
+
   /**
    *
    * @param string $url
