@@ -192,6 +192,39 @@ class Player extends PlayerSimple {
     $this->bonus_points_system = $this->sumStat($content->fixture_history->all, self::STAT_BONUS_POINTS_SYSTEM);
   }
 
+  public function populate($player) {
+    parent::populate($player);
+
+    $this->is_dreamteam     = $player[25];
+    $this->maximum_cost     = $player[11] / 10;
+    $this->minimum_cost     = $player[12] / 10;
+    $this->current_cost     = $player[10] / 10;
+    $this->photo_url        = "http://cdn.ismfg.net/static/plfpl/img/shirts/photos/{$player[2]}.jpg";
+    $this->shirt_image_url  = "http://cdn.ismfg.net/static/plfpl/img/shirts/shirt_{$player[57]}" . ($player[56] === 1 ? '_1' : '') . ".png";
+    $this->owners           = $player[27];
+    $this->owner_percentage = $player[28];
+    $this->status           = $player[1];
+    $this->total_points     = $player[36];
+    $this->form             = $player[29];
+    $this->transfers_in     = $player[31];
+    $this->transfers_out    = $player[30];
+
+    $this->minutes_played      = $player[42];
+    $this->goals_scored        = $player[43];
+    $this->assists             = $player[44];
+    $this->clean_sheets        = $player[45];
+    $this->goals_conceded      = $player[46];
+    $this->own_goals           = $player[47];
+    $this->penalties_saved     = $player[48];
+    $this->penalties_missed    = $player[49];
+    $this->yellow_cards        = $player[50];
+    $this->red_cards           = $player[51];
+    $this->saves               = $player[52];
+    $this->bonus_points        = $player[53];
+    $this->ea_sports_ppi       = $player[54];
+    $this->bonus_points_system = $player[55];
+  }
+
   protected function sumStat($rounds, $item) {
     $total = 0;
 

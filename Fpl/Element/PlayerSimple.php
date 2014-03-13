@@ -31,6 +31,11 @@ class PlayerSimple extends Element {
    */
   public $team;
 
+  /**
+   * @var Position
+   */
+  public $position;
+
   public function load($player_id) {
     $this->id = $player_id;
 
@@ -43,6 +48,25 @@ class PlayerSimple extends Element {
     $team = new TeamSimple();
     $team->load($content->team_id);
     $this->team = $team;
+
+    $position = new Position();
+    $position->load($content->element_type_id);
+    $this->position = $position;
+  }
+
+  public function populate($player) {
+    $this->id             = $player[0];
+    $this->first_name     = $player[3];
+    $this->last_name      = $player[4];
+    $this->display_name   = $player[5];
+
+    $team = new TeamSimple();
+    $team->load($player[57]);
+    $this->team = $team;
+
+    $position = new Position();
+    $position->load($player[56]);
+    $this->position = $position;
   }
 
 }
