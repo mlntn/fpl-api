@@ -46,6 +46,12 @@ class Api {
     return $league;
   }
 
+  public function getTeams() {
+    $element = new Element();
+    
+    return $element->getTeams();
+  }
+
   public function getUser($user_id) {
     $user = new Element\User();
     $user->load($user_id);
