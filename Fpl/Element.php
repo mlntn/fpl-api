@@ -39,9 +39,10 @@ class Element {
   }
 
   protected function getTransferJson(){
-    $json = self::$cache->get('transfers');
-
-    if (empty($json)) {
+    if (self::$cache->has('transfers')) {
+      $json = self::$cache->get('transfers');
+    }
+    else {
       if ($this->is_logged_in === false) {
         $this->login();
       }
@@ -57,9 +58,10 @@ class Element {
   }
 
   protected function getTeamsRaw() {
-    $teams = self::$cache->get('teams');
-
-    if (empty($teams)) {
+    if (self::$cache->has('teams')) {
+      $teams = self::$cache->get('teams');
+    }
+    else {
       $json = $this->getTransferJson();
       $teams = $json->eiwteams;
       self::$cache->set('teams', $teams);
@@ -83,6 +85,40 @@ class Element {
       $team = new Element\TeamSimple();
       $team->populate($t);
       $return[] = $team;
+    }
+
+    return $return;
+  }
+
+  protected function getPositionsRaw() {
+    if (self::$cache->has('positions')) {
+      $positions = self::$cache->get('positions');
+    }
+    else {
+      $json = $this->getTransferJson();
+      $positions = $json->typeInfo;
+      self::$cache->set('positions', $positions);
+    }
+
+    return $positions;
+  }
+
+  protected function getPosition($position_id) {
+    $positions = $this->getPositionsRaw();
+
+    return $positions[$position_id];
+  }
+
+  public function getPositions() {
+    $positions = $this->getPositionsRaw();
+
+    $return = array();
+
+    foreach ($positions as $p) {
+      if (is_null($p)) continue;
+      $position = new Element\Position();
+      $position->populate($p);
+      $return[] = $position;
     }
 
     return $return;

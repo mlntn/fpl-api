@@ -52,6 +52,19 @@ class Api {
     return $element->getTeams();
   }
 
+  public function getPositions() {
+    $element = new Element();
+    
+    return $element->getPositions();
+  }
+
+  public function getPosition($position_id) {
+    $position = new Element\Position();
+    $position->load($position_id);
+    
+    return $position;
+  }
+
   public function getUser($user_id) {
     $user = new Element\User();
     $user->load($user_id);
