@@ -27,12 +27,14 @@ class TeamSimple extends Element {
   public $icon;
 
   public function load($team_id) {
-    $team = $this->getTeam($team_id);
+    $this->populate($this->getTeam($team_id));
+  }
 
-    $this->id = $team_id;
+  public function populate($team) {
+    $this->id = $team->id;
     $this->name = $team->name;
     $this->abbr = $team->short_name;
-    $this->icon = "http://cdn.ismfg.net/static/plfpl/img/badges/badge_{$team_id}.png";
+    $this->icon = "http://cdn.ismfg.net/static/plfpl/img/badges/badge_{$team->id}.png";
   }
 
 }

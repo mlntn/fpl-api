@@ -56,7 +56,7 @@ class Element {
     return $json;
   }
 
-  protected function getTeam($team_id) {
+  protected function getTeamsRaw() {
     $teams = self::$cache->get('teams');
 
     if (empty($teams)) {
@@ -65,7 +65,27 @@ class Element {
       self::$cache->set('teams', $teams);
     }
 
+    return $teams;
+  }
+
+  protected function getTeam($team_id) {
+    $teams = $this->getTeamsRaw();
+
     return $teams->$team_id;
+  }
+
+  public function getTeams() {
+    $teams = $this->getTeamsRaw();
+
+    $return = array();
+
+    foreach ($teams as $t) {
+      $team = new Element\Team();
+      $team->populate($t);
+      $return[] = $team;
+    }
+
+    return $return;
   }
 
   /**
