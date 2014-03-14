@@ -133,7 +133,7 @@ class Api {
    * @param int $gameweek
    * @return \Fpl\Element\Gameweek
    */
-  public function getGameweek($gameweek) {
+  public function getGameweekMatches($gameweek) {
     $gw = new Element\Gameweek();
     $gw->load($gameweek);
 
