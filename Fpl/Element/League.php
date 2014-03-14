@@ -5,17 +5,7 @@ namespace Fpl\Element;
 use Fpl\Element;
 use Symfony\Component\DomCrawler\Crawler;
 
-class League extends Element {
-
-  /**
-   * @var integer
-   */
-  public $id;
-
-  /**
-   * @var string
-   */
-  public $name;
+class League extends LeagueSimple {
 
   /**
    * @var LeagueUser[]
@@ -23,8 +13,6 @@ class League extends Element {
   public $users = array();
 
   public function load($league_id, $page) {
-    $this->id = $league_id;
-
     $crawler = $this->getDom("http://fantasy.premierleague.com/my-leagues/{$league_id}/standings/" . ($page > 1 ? "?ls-page={$page}" : ''));
 
     $users = $crawler->filter('#ism .ismStandingsTable tr');
