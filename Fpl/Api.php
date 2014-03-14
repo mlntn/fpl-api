@@ -67,6 +67,17 @@ class Api {
   }
 
   /**
+   * @param int $gameweek
+   * @return \Fpl\Element\DreamteamGameweek
+   */
+  public function getDreamteamOverall() {
+    $dreamteam_overall = new Element\DreamteamOverall();
+    $dreamteam_overall->load();
+
+    return $dreamteam_overall;
+  }
+
+  /**
    * @param int $league_id
    * @param int $page
    * @return \Fpl\Element\League
