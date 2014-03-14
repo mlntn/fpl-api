@@ -158,7 +158,7 @@ class Element {
    * @return Symfony\Component\DomCrawler\Crawler
    */
   protected function getDom($url, $headers = array()) {
-    $html = $this->getContents($url, $headers);
+    $html = $this->getContents($url, $headers, true);
 
     $crawler = new Crawler($html);
 
@@ -178,21 +178,26 @@ class Element {
     return $content;
   }
 
-  protected function getContents($url, $headers = array()) {
+  protected function getContents($url, $headers = array(), $as_html = false) {
     $key = $this->buildCacheKey($url);
 
     if (self::$cache->has($key)) {
       return self::$cache->get($key);
     }
 
-    foreach ($headers as $k=>$v) {
-      $this->client->setHeader($k, $v);
+    if ($as_html) {
+      foreach ($headers as $k=>$v) {
+        $this->client->setHeader($k, $v);
+      }
+
+      $contents = $this->client->request('GET', $url)->html();
+
+      foreach ($headers as $k=>$v) {
+        $this->client->removeHeader($k);
+      }
     }
-
-    $contents = $this->client->request('GET', $url)->html();
-
-    foreach ($headers as $k=>$v) {
-      $this->client->removeHeader($k);
+    else {
+      $contents = file_get_contents($url);
     }
 
     self::$cache->set($key, $contents);
