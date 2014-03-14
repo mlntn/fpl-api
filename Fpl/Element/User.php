@@ -55,6 +55,8 @@ class User extends UserSimple {
     $crawler = $this->getDom("http://fantasy.premierleague.com/entry/{$user_id}/transfers/history/");
 
     $this->populateTransfers($crawler);
+
+    $this->populateLeagues($crawler);
   }
 
   public function populateGameweeks($crawler) {
@@ -75,6 +77,30 @@ class User extends UserSimple {
       $transfer->populate($t);
 
       array_unshift($this->transfers, $transfer);
+    }
+  }
+
+  public function populateLeagues($crawler) {
+    $types = array();
+
+    foreach ($crawler->filterXPath('//*[@class="ismSecondary"]/*[@class="ismTableHeading"]') as $h) {
+      $c = new Crawler($h);
+      if (preg_match('~ leagues$~', $c->text())) {
+        $types[] = strtolower(preg_replace('~ leagues$~', '', $c->text()));
+      }
+    }
+
+    foreach ($crawler->filterXPath('//*[@class="ismTable ismLeagueTable"]') as $i=>$t) {
+      $table = new Crawler($t);
+      $leagues = $table->filterXpath('//tbody/tr');
+      foreach ($leagues as $l) {
+        $c = new Crawler($l);
+        $league = new UserLeague();
+        $league->type = $types[$i];
+        $league->populate($c);
+
+        $this->leagues[] = $league;
+      }
     }
   }
 
