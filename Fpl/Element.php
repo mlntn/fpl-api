@@ -115,7 +115,9 @@ class Element {
     $return = array();
 
     foreach ($positions as $p) {
-      if (is_null($p)) continue;
+      if (is_null($p)) {
+        continue;
+      }
       $position = new Element\Position();
       $position->populate($p);
       $return[] = $position;
@@ -137,15 +139,23 @@ class Element {
     return $players;
   }
 
-  public function getPlayers() {
+  public function getPlayers(Filter $filter = null) {
     $players = $this->getPlayersRaw();
 
     $return = array();
 
     foreach ($players as $p) {
-      if (is_null($p)) continue;
+      if (is_null($p)) {
+        continue;
+      }
       $player = new Element\Player();
       $player->populate($p);
+      if (is_null($filter) === false) {
+        $key = $filter->getKey();
+        if ($filter->check($player->$key) === false) {
+          continue;
+        }
+      }
       $return[] = $player;
     }
 
