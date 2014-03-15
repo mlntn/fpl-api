@@ -23,12 +23,13 @@ class Api {
   }
 
   /**
+   * @var Filter $filter
    * @return Element\PlayerSimple[]
    */
-  public function getPlayers() {
+  public function getPlayers(Filter $filter = null) {
     $element = new Element();
     
-    return $element->getPlayers();
+    return $element->getPlayers($filter);
   }
 
   /**
