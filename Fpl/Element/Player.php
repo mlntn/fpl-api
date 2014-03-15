@@ -63,9 +63,20 @@ class Player extends PlayerSimple {
   public $owner_percentage;
 
   /**
+   * a: available
+   * n: not available
+   * i: injured
+   * d: doubtful
+   * s: suspended
+   * 
    * @var string
    */
   public $status;
+
+  /**
+   * @var string
+   */
+  public $news;
 
   /**
    * @var integer
@@ -171,6 +182,7 @@ class Player extends PlayerSimple {
     $this->owners           = $content->selected;
     $this->owner_percentage = (float) $content->selected_by;
     $this->status           = $content->status;
+    $this->news             = $content->news;
     $this->total_points     = $content->total_points;
     $this->form             = $content->form;
     $this->transfers_in     = $content->transfers_in;
@@ -204,6 +216,7 @@ class Player extends PlayerSimple {
     $this->owners           = $player[27];
     $this->owner_percentage = $player[28];
     $this->status           = $player[1];
+    $this->news             = $player[7];
     $this->total_points     = $player[36];
     $this->form             = $player[29];
     $this->transfers_in     = $player[31];
