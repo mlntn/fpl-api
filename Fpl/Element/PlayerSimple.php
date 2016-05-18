@@ -50,7 +50,7 @@ class PlayerSimple extends Element {
     $this->team = $team;
 
     $position = new Position;
-    $position->load($content->element_type_id);
+    $position->load($content->element_type);
     $this->position = $position;
   }
 
