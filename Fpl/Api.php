@@ -75,7 +75,6 @@ class Api
     }
 
     /**
-     * @param int $gameweek
      * @return \Fpl\Element\DreamteamGameweek
      */
     public function getDreamteamOverall()
