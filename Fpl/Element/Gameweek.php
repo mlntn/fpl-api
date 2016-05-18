@@ -33,12 +33,12 @@ class Gameweek extends Element {
 
     foreach ($games as $g) {
       $gc = new Crawler($g);
-      $match = new GameweekMatch();
+      $match = new GameweekMatch;
       $home_team_id = (int) preg_replace('~^.+badge_(\d+).+$~', '$1', $gc->filterXpath('//td[3]/img')->attr('src'));
       $away_team_id = (int) preg_replace('~^.+badge_(\d+).+$~', '$1', $gc->filterXpath('//td[5]/img')->attr('src'));
-      $match->home_team = new TeamSimple();
+      $match->home_team = new TeamSimple;
       $match->home_team->load($home_team_id);
-      $match->away_team = new TeamSimple();
+      $match->away_team = new TeamSimple;
       $match->away_team->load($away_team_id);
       $match->start_time = $this->parseDate($gc->filterXpath('//td[1]')->text());
 

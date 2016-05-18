@@ -22,7 +22,7 @@ class Element {
   protected $is_logged_in = false;
 
   public function __construct() {
-    $this->client = new Client();
+    $this->client = new Client;
   }
 
   protected function login() {
@@ -82,7 +82,7 @@ class Element {
     $return = array();
 
     foreach ($teams as $t) {
-      $team = new Element\TeamSimple();
+      $team = new Element\TeamSimple;
       $team->populate($t);
       $return[] = $team;
     }
@@ -118,7 +118,7 @@ class Element {
       if (is_null($p)) {
         continue;
       }
-      $position = new Element\Position();
+      $position = new Element\Position;
       $position->populate($p);
       $return[] = $position;
     }
@@ -148,7 +148,7 @@ class Element {
       if (is_null($p)) {
         continue;
       }
-      $player = new Element\Player();
+      $player = new Element\Player;
       $player->populate($p);
       if (is_null($filter) === false) {
         $key = $filter->getKey();

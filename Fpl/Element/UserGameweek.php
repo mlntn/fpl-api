@@ -75,7 +75,7 @@ class UserGameweek extends Element {
 
     foreach ($player_list as $p) {
       $info = json_decode(trim(str_replace('ismPitchElement', '', $p->getAttribute('class'))));
-      $player = new UserPlayerGameweek();
+      $player = new UserPlayerGameweek;
       $player->load($info->id, $gameweek);
       $player->is_captain = $info->is_captain;
       $player->is_vice_captain = $info->is_vice_captain;

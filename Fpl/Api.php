@@ -16,7 +16,7 @@ class Api {
    * @return \Fpl\Element\Player
    */
   public function getPlayer($player_id) {
-    $player = new Element\Player();
+    $player = new Element\Player;
     $player->load($player_id);
 
     return $player;
@@ -27,7 +27,7 @@ class Api {
    * @return Element\PlayerSimple[]
    */
   public function getPlayers(Filter $filter = null) {
-    $element = new Element();
+    $element = new Element;
     
     return $element->getPlayers($filter);
   }
@@ -38,7 +38,7 @@ class Api {
    * @return \Fpl\Element\PlayerGameweek
    */
   public function getPlayerGameweek($player_id, $gameweek) {
-    $player_gameweek = new Element\PlayerGameweek();
+    $player_gameweek = new Element\PlayerGameweek;
     $player_gameweek->load($player_id, $gameweek);
 
     return $player_gameweek;
@@ -50,7 +50,7 @@ class Api {
    * @return \Fpl\Element\UserGameweek
    */
   public function getUserGameweek($user_id, $gameweek) {
-    $user_gameweek = new Element\UserGameweek();
+    $user_gameweek = new Element\UserGameweek;
     $user_gameweek->load($user_id, $gameweek);
 
     return $user_gameweek;
@@ -61,7 +61,7 @@ class Api {
    * @return \Fpl\Element\DreamteamGameweek
    */
   public function getDreamteamGameweek($gameweek) {
-    $dreamteam_gameweek = new Element\DreamteamGameweek();
+    $dreamteam_gameweek = new Element\DreamteamGameweek;
     $dreamteam_gameweek->load($gameweek);
 
     return $dreamteam_gameweek;
@@ -72,7 +72,7 @@ class Api {
    * @return \Fpl\Element\DreamteamGameweek
    */
   public function getDreamteamOverall() {
-    $dreamteam_overall = new Element\DreamteamOverall();
+    $dreamteam_overall = new Element\DreamteamOverall;
     $dreamteam_overall->load();
 
     return $dreamteam_overall;
@@ -84,7 +84,7 @@ class Api {
    * @return \Fpl\Element\League
    */
   public function getLeague($league_id, $page = 1) {
-    $league = new Element\League();
+    $league = new Element\League;
     $league->load($league_id, $page);
 
     return $league;
@@ -94,7 +94,7 @@ class Api {
    * @return Element\TeamSimple[]
    */
   public function getTeams() {
-    $element = new Element();
+    $element = new Element;
     
     return $element->getTeams();
   }
@@ -103,7 +103,7 @@ class Api {
    * @return Element\Position[]
    */
   public function getPositions() {
-    $element = new Element();
+    $element = new Element;
     
     return $element->getPositions();
   }
@@ -113,7 +113,7 @@ class Api {
    * @return \Fpl\Element\Position
    */
   public function getPosition($position_id) {
-    $position = new Element\Position();
+    $position = new Element\Position;
     $position->load($position_id);
     
     return $position;
@@ -124,7 +124,7 @@ class Api {
    * @return \Fpl\Element\User
    */
   public function getUser($user_id) {
-    $user = new Element\User();
+    $user = new Element\User;
     $user->load($user_id);
 
     return $user;
@@ -135,7 +135,7 @@ class Api {
    * @return \Fpl\Element\Gameweek
    */
   public function getGameweekMatches($gameweek) {
-    $gw = new Element\Gameweek();
+    $gw = new Element\Gameweek;
     $gw->load($gameweek);
 
     return $gw;

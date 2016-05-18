@@ -45,11 +45,11 @@ class PlayerSimple extends Element {
     $this->last_name    = $content->second_name;
     $this->display_name = $content->web_name;
 
-    $team = new TeamSimple();
+    $team = new TeamSimple;
     $team->load($content->team_id);
     $this->team = $team;
 
-    $position = new Position();
+    $position = new Position;
     $position->load($content->element_type_id);
     $this->position = $position;
   }
@@ -60,11 +60,11 @@ class PlayerSimple extends Element {
     $this->last_name      = $player[4];
     $this->display_name   = $player[5];
 
-    $team = new TeamSimple();
+    $team = new TeamSimple;
     $team->load($player[57]);
     $this->team = $team;
 
-    $position = new Position();
+    $position = new Position;
     $position->load($player[56]);
     $this->position = $position;
   }

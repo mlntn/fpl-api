@@ -36,7 +36,7 @@ class User extends UserSimple {
     if (count($favorite_team)) {
       preg_match('~badge_(\d+)\.png$~', $favorite_team->attr('src'), $team_id);
       if (count($team_id) > 1) {
-        $team = new Team();
+        $team = new Team;
         $team->load($content->$team_id[1]);
         $this->favorite_team = $team;
       }
@@ -63,7 +63,7 @@ class User extends UserSimple {
     foreach ($crawler->filterXPath('//*[@id="ism"]/section[1]/section[1]/table/tbody/tr') as $week) {
       $week = new Crawler($week);
 
-      $gameweek = new UserHistoryGameweek();
+      $gameweek = new UserHistoryGameweek;
       $gameweek->populate($week);
 
       $this->gameweeks[] = $gameweek;
@@ -73,7 +73,7 @@ class User extends UserSimple {
   public function populateTransfers($crawler) {
     foreach ($crawler->filterXPath('//*[@id="ism"]/section[1]/table[1]/tbody/tr') as $t) {
       $t = new Crawler($t);
-      $transfer = new UserHistoryTransfer();
+      $transfer = new UserHistoryTransfer;
       $transfer->populate($t);
 
       array_unshift($this->transfers, $transfer);
@@ -95,7 +95,7 @@ class User extends UserSimple {
       $leagues = $table->filterXpath('//tbody/tr');
       foreach ($leagues as $l) {
         $c = new Crawler($l);
-        $league = new UserLeague();
+        $league = new UserLeague;
         $league->type = $types[$i];
         $league->populate($c);
 

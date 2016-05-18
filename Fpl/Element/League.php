@@ -20,7 +20,7 @@ class League extends LeagueSimple {
       if ($i === 0) continue;
       $u = new Crawler($ui);
 
-      $user = new LeagueUser();
+      $user = new LeagueUser;
       $user->rank = (int) preg_replace('~\D~', '', $u->filterXPath('//td[2]')->text());
       $user->id = (int) preg_replace('~^/entry/(\d+)/.+?$~', '$1', $u->filterXPath('//td[3]/a')->attr('href'));
       $user->team = $u->filterXPath('//td[3]')->filter('a')->text();
