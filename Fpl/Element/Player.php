@@ -31,16 +31,7 @@ class Player extends PlayerSimple
     /**
      * @var float
      */
-    public $maximum_cost;
 
-    /**
-     * @var float
-     */
-    public $minimum_cost;
-
-    /**
-     * @var float
-     */
     public $current_cost;
 
     /**
@@ -52,11 +43,6 @@ class Player extends PlayerSimple
      * @var string
      */
     public $shirt_image_url;
-
-    /**
-     * @var integer
-     */
-    public $owners;
 
     /**
      * @var integer
@@ -176,13 +162,10 @@ class Player extends PlayerSimple
         $content = $this->getJson("http://fantasy.premierleague.com/web/api/elements/{$player_id}/");
 
         $this->is_dreamteam     = $content->in_dreamteam;
-        $this->maximum_cost     = $content->max_cost / 10;
-        $this->minimum_cost     = $content->min_cost / 10;
         $this->current_cost     = $content->now_cost / 10;
-        $this->photo_url        = $content->photo_mobile_url;
-        $this->shirt_image_url  = $content->shirt_image_url;
-        $this->owners           = $content->selected;
-        $this->owner_percentage = (float)$content->selected_by;
+        $this->photo_url        = "http://cdn.ismfg.net/static/plfpl/img/shirts/photos/{$content->code}.jpg";
+        $this->shirt_image_url  = "http://cdn.ismfg.net/static/plfpl/img/shirts/shirt_{$content->team_id}" . ($content->element_type === 1 ? '_1' : '') . ".png";
+        $this->owner_percentage = (float) $content->selected_by;
         $this->status           = $content->status;
         $this->news             = $content->news;
         $this->total_points     = $content->total_points;
@@ -215,8 +198,7 @@ class Player extends PlayerSimple
         $this->minimum_cost     = $player[12] / 10;
         $this->current_cost     = $player[10] / 10;
         $this->photo_url        = "http://cdn.ismfg.net/static/plfpl/img/shirts/photos/{$player[2]}.jpg";
-        $this->shirt_image_url  = "http://cdn.ismfg.net/static/plfpl/img/shirts/shirt_{$player[57]}" . ($player[56] === 1
-            ? '_1' : '') . ".png";
+        $this->shirt_image_url  = "http://cdn.ismfg.net/static/plfpl/img/shirts/shirt_{$player[57]}" . ($player[56] === 1 ? '_1' : '') . ".png";
         $this->owners           = $player[27];
         $this->owner_percentage = $player[28];
         $this->status           = $player[1];
