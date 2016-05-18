@@ -4,21 +4,21 @@ namespace Fpl\Element;
 
 use Fpl\Element;
 
-class GameweekMatch extends Element {
+class GameweekMatch extends Element
+{
 
-  /**
-   * @var \DateTime
-   */
-  public $start_time;
+    /**
+     * @var \DateTime
+     */
+    public $start_time;
 
-  /**
-   * @var TeamSimple
-   */
-  public $home_team;
+    /**
+     * @var TeamSimple
+     */
+    public $home_team;
 
-  /**
-   * @var TeamSimple
-   */
-  public $away_team;
-
+    /**
+     * @var TeamSimple
+     */
+    public $away_team;
 }

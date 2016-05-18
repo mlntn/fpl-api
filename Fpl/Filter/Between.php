@@ -4,20 +4,22 @@ namespace Fpl\Filter;
 
 use Fpl\Filter;
 
-class Between extends Filter {
+class Between extends Filter
+{
 
-  protected $min;
-  protected $max;
+    protected $min;
+    protected $max;
 
-  public function __construct($key, $min, $max) {
-    parent::__construct($key);
+    public function __construct($key, $min, $max)
+    {
+        parent::__construct($key);
 
-    $this->min = $min;
-    $this->max = $max;
-  }
+        $this->min = $min;
+        $this->max = $max;
+    }
 
-  public function check($item) {
-    return $item >= $this->min && $item <= $this->max;
-  }
-
+    public function check($item)
+    {
+        return $item >= $this->min && $item <= $this->max;
+    }
 }

@@ -4,18 +4,20 @@ namespace Fpl\Filter;
 
 use Fpl\Filter;
 
-class Contains extends Filter {
+class Contains extends Filter
+{
 
-  protected $values;
+    protected $values;
 
-  public function __construct($key, array $values = array()) {
-    parent::__construct($key);
+    public function __construct($key, array $values = [])
+    {
+        parent::__construct($key);
 
-    $this->values = $values;
-  }
+        $this->values = $values;
+    }
 
-  public function check($item) {
-    return in_array($item, $this->values);
-  }
-
+    public function check($item)
+    {
+        return in_array($item, $this->values);
+    }
 }

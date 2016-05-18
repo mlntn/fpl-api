@@ -2,16 +2,18 @@
 
 namespace Fpl;
 
-abstract class Filter implements FilterInterface {
+abstract class Filter implements FilterInterface
+{
 
-  private $key;
+    private $key;
 
-  public function __construct($key) {
-    $this->key = $key;
-  }
+    public function __construct($key)
+    {
+        $this->key = $key;
+    }
 
-  public function getKey() {
-    return $this->key;
-  }
-
+    public function getKey()
+    {
+        return $this->key;
+    }
 }

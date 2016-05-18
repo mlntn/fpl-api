@@ -2,8 +2,8 @@
 
 namespace Fpl;
 
-interface FilterInterface {
+interface FilterInterface
+{
 
-  public function check($item);
-
+    public function check($item);
 }
