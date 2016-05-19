@@ -31,7 +31,6 @@ class Player extends PlayerSimple
     /**
      * @var float
      */
-
     public $current_cost;
 
     /**
